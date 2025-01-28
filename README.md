@@ -1,4 +1,4 @@
-# Smart 🦊 Solana Trading Trading Bot(@Smart_SOL_Trading_Bot) 🎯
+# Smart 🦊 Solana Trading Bot 🎯
 
 ## Features
 
