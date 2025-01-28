@@ -74,7 +74,7 @@ yarn@v1.22.10 or higher
 
 ### Creating a bot 🤖
 
-[<img src="img/botfather.png" width="400"/>](img/botfather.png)
+<!-- [<img src="img/botfather.png" width="400"/>](img/botfather.png) -->
 
 1. Search for the BotFather.
 
@@ -88,7 +88,7 @@ yarn@v1.22.10 or higher
 
 6. Now capture the HTTP API token it's very important!
 
-[<img src="img/bot.png" width="400"/>](img/bot.png)
+<!-- [<img src="img/bot.png" width="400"/>](img/bot.png) -->
 
 7. Now search for the bot name `testing_xyz` and send a message to the bot contact.
 
