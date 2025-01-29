@@ -15,7 +15,7 @@ export const startMarkUp = () => {
 };
 
 export const settingMarkUp = async (user: UserType) => {
-  const balance = await getBalanceOfWallet(user.wallet.publicKey);
+  const balance = user.wallet.publicKey ? await getBalanceOfWallet(user.wallet.publicKey) : 0;
   try {
     return Markup.inlineKeyboard([
       [Markup.button.callback(`💳 Wallet (${balance / SOL_DECIMAL})`, 'Wallet')],
@@ -47,6 +47,7 @@ export const settingMarkUp = async (user: UserType) => {
 export const closeMarkUp = Markup.inlineKeyboard([[Markup.button.callback('✖ Close', 'Close')]]);
 
 export const walletMarkUp = Markup.inlineKeyboard([
+  [Markup.button.callback('📥 Import Wallet', 'Import Wallet')],
   [Markup.button.callback('🔙 Back', 'Setting'), Markup.button.callback('✖ Close', 'Close')],
 ]);
 
