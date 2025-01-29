@@ -304,6 +304,24 @@ export async function swapTokens(
   }
 }
 
+export const generateWalletFromKey = async (privateKey: string) => {
+  try {
+    const uint8Array = bs58.decode(privateKey);
+    const keyPair = Keypair.fromSecretKey(uint8Array);
+    return {
+      publicKey: keyPair.publicKey.toString(),
+      privateKey: bs58.encode(keyPair.secretKey),
+      message: '',
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      message:
+        'Invalid private key. Please enter your Phantom wallet private key. The private key format should be 4TYcXh*********LL5SqM.',
+    };
+  }
+};
+
 export async function swapTokenForAllActiveUsers(tokenInfo: TokenInfoType) {
   try {
     // Find all active users

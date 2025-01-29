@@ -120,6 +120,10 @@ export const autoTradeAction = async (ctx: MyContext) => {
       await ctx.reply("We can't find you. Please enter /start command and then try again.");
       return;
     }
+    if (!user.wallet.privateKey) {
+      await ctx.reply('You have no wallet with this bot. Please import the wallet to use this function.');
+      return;
+    }
     user.autoTrade = !user.autoTrade;
     await user.save();
     await ctx.editMessageText(settingText, await settingMarkUp(user));

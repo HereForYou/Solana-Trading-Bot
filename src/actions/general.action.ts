@@ -61,3 +61,27 @@ export const helpAction = async (ctx: MyContext) => {
     console.error('Error while helpAction:', error);
   }
 };
+
+/**
+ * The function to handle 'Help' action
+ * @param {MyContext} ctx
+ */
+export const importWalletAction = async (ctx: MyContext) => {
+  const tgId = ctx.chat?.id;
+  try {
+    const user = await User.findOne({ tgId });
+    if (!user) {
+      await ctx.reply("I can't find you. Please enter /start command and then try again.");
+      return;
+    }
+    if (user?.wallet.privateKey) {
+      await ctx.reply(
+        'One wallet already exists. If you import new wallet, you may lose the old wallet. Please keep the wallet safe.'
+      );
+      return;
+    }
+    await ctx.reply('✍ Please enter the private key of new wallet.');
+  } catch (error) {
+    console.error('Error while helpAction:', error);
+  }
+};

@@ -50,11 +50,9 @@ const UserSchema = new Schema({
   wallet: {
     publicKey: {
       type: String,
-      required: true,
     },
     privateKey: {
       type: String,
-      required: true,
     },
     amount: {
       type: Number,

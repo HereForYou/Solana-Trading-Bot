@@ -22,8 +22,6 @@ export const startCommand = async (ctx: MyContext) => {
         tgId,
         username,
         wallet: {
-          publicKey: wallet.publicKey,
-          privateKey: wallet.privateKey,
         },
       });
       user = await newUser.save();
