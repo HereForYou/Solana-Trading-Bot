@@ -2,6 +2,7 @@ import { SOL_DECIMAL } from '../config/config';
 import { Markup, Types } from 'telegraf';
 import { UserType } from './user.model';
 import { getBalanceOfWallet } from '../utils/web3';
+import { ParseMode } from 'telegraf/typings/core/types/typegram';
 
 export const startMarkUp = () => {
   try {
@@ -17,7 +18,7 @@ export const startMarkUp = () => {
 export const settingMarkUp = async (user: UserType) => {
   const balance = user.wallet.publicKey ? await getBalanceOfWallet(user.wallet.publicKey) : 0;
   try {
-    return Markup.inlineKeyboard([
+    return {reply_markup: Markup.inlineKeyboard([
       [Markup.button.callback(`💳 Wallet (${balance / SOL_DECIMAL})`, 'Wallet')],
       [
         Markup.button.callback(
@@ -37,7 +38,7 @@ export const settingMarkUp = async (user: UserType) => {
         Markup.button.callback(`⌛ Stop At: ${user.stopAt}`, 'Stop Time'),
       ],
       [Markup.button.callback('🔙 Back', 'Return'), Markup.button.callback('✖ Close', 'Close')],
-    ]);
+    ]).reply_markup, parse_mode: 'HTML' as ParseMode};
   } catch (error) {
     console.error('Error while settingMarkUp:', error);
     throw new Error('Failed to create markup for user settings.');

@@ -1,7 +1,6 @@
 import { MyContext } from '../config/types';
 import { User } from '../models/user.model';
 import { bot } from '../config/config';
-import { generateWallet } from '../utils/web3';
 import { startMarkUp, settingMarkUp } from '../models/markup.model';
 import { helpText, settingText, startText } from '../models/text.model';
 import { Chat } from 'telegraf/typings/core/types/typegram';
@@ -17,7 +16,6 @@ export const startCommand = async (ctx: MyContext) => {
     const username = (ctx?.chat as Chat.PrivateChat).username || '';
     let user = await User.findOne({ tgId });
     if (!user) {
-      const wallet = await generateWallet();
       const newUser = new User({
         tgId,
         username,

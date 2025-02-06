@@ -59,7 +59,20 @@ export const swapSuccessText = (tokenInfo: any, signature: string, solAmount: nu
   );
 };
 
-export const settingText = `User Setting:\n\n` + 'You can set auto trading amount, priority fee, time range, etc.';
+export const settingText =
+  `🛠️ <b>Smart 🦊 Trading Bot Settings</b>\n\n` +
+  `Welcome to the settings page for your Solana Trading Bot!\n\n` +
+  `1. <b>Amount</b>: \n` +
+  `   - Specify the amount of SOL (or tokens) you wish to trade.\n` +
+  `2. <b>Priority Fee</b>: \n` +
+  `   - Set the priority fee (in SOL) to ensure your transactions are processed quickly.\n` +
+  `3. <b>Slippage BPS</b>: \n` +
+  `   - Define the slippage in basis points (bps).\n` +
+  `4. <b>Start Time</b>: \n` +
+  `   - Choose the time when you want the bot to start trading.\n` +
+  `5. <b>Stop Time</b>: \n` +
+  `   - Set the time when you want the bot to stop trading.\n\n` +
+  `🔧 <b>Please adjust these settings according to your trading strategy and preferences.</b>`;
 
 export const buySuccessText = (tokenInfo: TokenInfoType, signature: string, solAmount: number, tokenAmount: number) => {
   return (
