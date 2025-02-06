@@ -10,7 +10,8 @@ export const startText = (user: UserType) => {
   return (
     `🎉 @${user?.username}, <b>Welcome to Smart Solana Trading Bot</b>\n\n` +
     `👍 The Unique Solana Trading Bot.\n` +
-    `💨 Snipe asap, 💨 Trade as reasonable as possible`
+    `💨 Snipe asap, 💨 Trade as reasonable as possible\n\n` +
+    `🔴 This bot only <b>monitor</b>s new token launch on Raydium dex. To use the other functionality please <b>contact</b> to @QualityAtTheFirst 🔴`
   );
 };
 

@@ -11,7 +11,6 @@ import { settingMarkUp } from './models/markup.model';
 import { checkAction } from './utils/middleware';
 import { startCommand, helpCommand, setCommands, settingCommand } from './commands/commands';
 import { generateWalletFromKey, monitorNewToken } from './utils/web3';
-import { monitorTokenToSell } from './utils/token.monitor';
 import { settingAction, closeAction, returnAction, helpAction, importWalletAction } from './actions/general.action';
 import {
   walletAction,
@@ -220,9 +219,3 @@ bot
  * Monitor and buy automatically newly added liquidity token
  */
 monitorNewToken().catch(console.error);
-
-/**
- * Monitor the token price which users ever bought
- * Sell automatically if the price is over than 1.3 times or less than 0.99 times of bought price
- */
-monitorTokenToSell().catch(console.error);

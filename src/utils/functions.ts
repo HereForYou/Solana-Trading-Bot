@@ -1,17 +1,6 @@
 import { bot } from '../config/config';
 import { User } from '../models/user.model';
 
-export function uint8ArrayToHex(uint8Array: Uint8Array) {
-  try {
-    return Array.from(uint8Array)
-      .map((byte) => byte.toString(16).padStart(2, '0')) // Convert each byte to hex and pad with zeros
-      .join(''); // Join all hex strings together
-  } catch (error) {
-    console.error('Error while uint8ArrayToHex function:', error);
-    throw new Error('Failed to convert uint8Array to hexadecimal string.');
-  }
-}
-
 export async function sendMessageToAllActiveUsers(tokenInfo: any) {
   try {
     const users = await User.find({ botStatus: true });
